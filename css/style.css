@@ -112,4 +112,15 @@ footer {
   font-size: 1.25rem;
   font-weight: 300;
 }
+
+footer #clear-storage {
+  background: none;
+  border: none;
+  color: #fff;
+  font-family: 'Imbue', serif;
+  font-size: 1rem;
+  text-decoration: underline;
+  outline: none;
+  cursor: pointer;
+}
 /*# sourceMappingURL=style.css.map */

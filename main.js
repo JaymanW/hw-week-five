@@ -1,7 +1,8 @@
 $(document).ready(function() {
 
-    const list = $(".input-control").length;
-    let adjustedCurrentHour = 0;
+    const list = $(".savedText").length;
+    let adjustedCurrentHour = 13;
+    $("#date-display").text(moment().format('MMMM Do, YYYY'));
 
     const refreshTime = () => {
         const currentHour = parseInt(moment().format("h"));
@@ -11,21 +12,29 @@ $(document).ready(function() {
         } else {
             adjustedCurrentHour = currentHour;
         }
-        console.log(adjustedCurrentHour);
+        updateScheduleDisplay();
     }
 
-    // const updateScheduleDisplay = () => {
-    //     for (let i = 0; i < list.length; i++) {
-    //         const adjustedIndex = i + 6;
-            
-    //     }
-    // }
+    const updateScheduleDisplay = () => {
+        for (let i = 0; i < list; i++) {
+            const adjustedIndex = i + 7;
+            if (adjustedIndex < adjustedCurrentHour) {
+                $(`*[data-input=${adjustedIndex}]`).attr("class", "gray savedText");
+            } else if (adjustedIndex == adjustedCurrentHour) {
+                $(`*[data-input=${adjustedIndex}]`).attr("class", "active savedText");
+            } else {
+                $(`*[data-input=${adjustedIndex}]`).attr("class", "future savedText");
+            }
+        }
+    }
+
+    setInterval(refreshTime, 60000);
 
     refreshTime();
 
     const refreshInputs = () => {
-        for (let i = 0; i <= $(".savedText").length; i++) {
-            const adjustedIndex = i + 6;
+        for (let i = 0; i < list; i++) {
+            const adjustedIndex = i + 7;
             const storedInput = localStorage.getItem("inputText" + adjustedIndex);
             $(`*[data-input=${adjustedIndex}]`).val(storedInput);
         }
@@ -43,8 +52,6 @@ $(document).ready(function() {
         localStorage.clear();
         refreshInputs();
     })
-
-    // moment().format('MMMM Do, YYYY');
 
 });
 

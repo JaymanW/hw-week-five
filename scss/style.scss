@@ -12,6 +12,21 @@ body {
     font-family: 'Imbue', serif;
 }
 
+.gray {
+    background: #434343; 
+    border: 1px solid black; 
+    // color: white;
+}
+
+.active {
+    // background: #B4005D;
+    border: 2px solid #f64f59; 
+}
+
+.future {
+    border: 2px solid #000; 
+}
+
 /* TITLE */
 .title-cnt {
     padding-top: 3rem;
@@ -64,6 +79,7 @@ hr {
     .savedText {
         flex-grow: 1;
         height: 100%;
+        padding-left: 0.5rem;
     }
 
     .saveBtn {
